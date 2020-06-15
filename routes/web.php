@@ -13,6 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::redirect('/','/login');
+Route::get('admin/login','Auth\AdminLoginController@showLoginForm');
+Route::post('admin/login','Auth\AdminLoginController@login')->name('adminlogin');
+
+Route::get('admin/logout','Auth\AdminLoginController@showLogoutForm');
+Route::post('admin/logout','Auth\AdminLoginController@logout')->name('adminlogout');
+Route::get('admin/register','Auth\AdminRegisterController@showRegistrationForm');
+Route::post('admin/register','Auth\AdminRegisterController@register')->name('adminregister');
+route::group(["middleware"=>"auth:admin"],function(){
+    Route::resource('adm','admcontroller');
+   
+});
+
+route::group(["middleware"=>"auth"],function(){
+    route::get('checkuser',function(){
+        return 'user success';
+    });
+});
 
 Route::group(["middleware"=>'auth'],function(){
     Route::resource('prof','profileController');
