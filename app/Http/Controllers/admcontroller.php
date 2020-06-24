@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Admin;
+use App\matched;
+use App\contactus;
 class admcontroller extends Controller
 {
     /**
@@ -14,11 +16,15 @@ class admcontroller extends Controller
      */
     public function index()
     {
- 
+        $data4 = User::join('contactus', 'users.id', '=', 'contactus.uid')
+        
+        ->select('users.name', 'users.email','contactus.message','contactus.updated_at')
+        ->get();
+        $result1=contactus::count();
         $admin=Admin::all();
         $data=User::count();
-
-        return view('dash',compact('data','admin'));
+        $data1=matched::count();
+        return view('dash',compact('data1','data','admin','data4','result1'));
     }
 
     /**

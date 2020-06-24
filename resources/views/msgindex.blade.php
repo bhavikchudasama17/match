@@ -23,7 +23,8 @@
 
                                    <input type="hidden" class="textbox" name="sid"value="{{ Auth::user()->id }}">
                                    <input type="hidden" class="textbox" name="rid"value="{{$row->id}}">
-                                   <textarea name="message">Message:</textarea>
+                                   <input type="hidden" class="textbox" name="iid"value="{{$row->ide}}">
+								   <textarea name="message">Message:</textarea>
 								   <button type="submit" class="btn btn-success">Send Message</button>
                                </form>
 									</div>

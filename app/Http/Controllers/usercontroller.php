@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class searchController extends Controller
+use App\User;
+use App\contactus;
+class usercontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,14 @@ class searchController extends Controller
      */
     public function index()
     {
-        return view('searchindex');
+
+        $data=User::all();
+        $data4 = User::join('contactus', 'users.id', '=', 'contactus.uid')
+        
+        ->select('users.name', 'users.email','contactus.message','contactus.updated_at')
+        ->get();
+        $result1=contactus::count();
+        return view('users',compact('data','data4','result1'));
     }
 
     /**
@@ -68,7 +76,7 @@ class searchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $products=DB::table('users')->where('','LIKE','%'.$request->search."%")->get();
+        //
     }
 
     /**
@@ -79,6 +87,8 @@ class searchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = User::findOrFail($id);
+        $data->delete();
+        return redirect('user')->with('success', 'Data is successfully deleted');
     }
 }

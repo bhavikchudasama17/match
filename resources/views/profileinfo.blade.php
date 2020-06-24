@@ -272,9 +272,9 @@
 		</div>
 	
 		<div class="col-md-3 w3ls-aside">
-			<h3>Search by Profile ID:</h3>
+			<h3>Search by Profile Name:</h3>
 			<form action="#" method="get"> 
-				<input class="text" type="text" name="profile_id" placeholder="Enter Profile ID" required="">
+				<input class="text" type="text" name="profile_id" placeholder="Enter Profile Name" required="">
 				<input type="submit" value="Search">
 				<div class="clearfix"></div>
 			</form>

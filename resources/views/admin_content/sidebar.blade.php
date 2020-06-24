@@ -5,7 +5,7 @@ admin sidebar -->
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
   
-  <div class="sidebar-brand-text mx-3">TUBE </div>
+  <div class="sidebar-brand-text mx-3">Match Admin</div>
 </a>
 
 <!-- Divider -->
@@ -34,7 +34,9 @@ admin sidebar -->
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Tables:</h6>
            
-            <a class="collapse-item" href="#">Users</a>
+            <a class="collapse-item" href="{{route('user.index')}}">Users</a>
+            <a class="collapse-item" href="{{route('admatch.index')}}">Matched</a>
+            <a class="collapse-item" href="{{route('adreport.index')}}">Reported</a>
             
           </div>
         </div>
@@ -59,7 +61,7 @@ admin sidebar -->
 <li class="nav-item">
 @if(Auth::user()->email=='bhavik1@gmail.com')         
       <a href="admin/register" class="nav-link"><span>Add Admin</span></a>
-      <a href="#" class="nav-link"><span>Admins</span></a>            
+      <a href="{{route('ads.index')}}" class="nav-link"><span>Admins</span></a>            
 
             
 @endif

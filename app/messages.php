@@ -8,6 +8,6 @@ class messages extends Model
 {
     protected $table='messages';
     protected $fillable = [
-        'sid','rid','message',
+        'sid','rid','iid','message',
     ];
 }

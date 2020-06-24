@@ -15,8 +15,9 @@ class CreateMessages extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sid')->nullable;
-            $table->unsignedBigInteger('rid')->nullable;
+            $table->unsignedBigInteger('sid');
+            $table->unsignedBigInteger('rid');
+            $table->unsignedBigInteger('iid');
             $table->string('message');
             $table->timestamps();
             $table->foreign('sid')
@@ -27,6 +28,11 @@ class CreateMessages extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+            $table->foreign('iid')
+            ->references('id')
+            ->on('intrested')
+            ->onDelete('cascade');
+
         });
     }
 

@@ -1,10 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="w3layouts_featured-profiles">
 				<div class="container">
+				<form action="sarch" method="GET">
+    <input type="text" name="category" required/>
+    <button type="submit">Submit</button>
+</form>
+
 				<!-- slider -->
 				<div class="agile_featured-profiles">
+				
 					<h2>Featured Profiles</h2>
 							<ul id="flexiselDemo3">
 								<li>

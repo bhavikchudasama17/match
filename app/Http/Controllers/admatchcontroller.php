@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class searchController extends Controller
+use App\User;
+use App\contactus;
+use App\matched;
+class admatchcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,17 @@ class searchController extends Controller
      */
     public function index()
     {
-        return view('searchindex');
+
+        $data= User::join('matched', 'users.id', '=', 'matched.uid')
+       
+        ->select('users.name', 'users.email','matched.updated_at')
+        ->get();
+        $data4 = User::join('contactus', 'users.id', '=', 'contactus.uid')
+        
+        ->select('users.name', 'users.email','contactus.message','contactus.updated_at')
+        ->get();
+        $result1=contactus::count();
+        return view('admatch',compact('data','data4','result1'));
     }
 
     /**
@@ -68,7 +80,7 @@ class searchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $products=DB::table('users')->where('','LIKE','%'.$request->search."%")->get();
+        //
     }
 
     /**
@@ -79,6 +91,6 @@ class searchController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

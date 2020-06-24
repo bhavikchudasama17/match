@@ -13,8 +13,9 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <div class="form-group row">
-					<span>Profile For:</span>
-					<select  name="for">
+                        <label for="Profile for:" class="col-md-4 col-form-label text-md-right">Profile for:</label>
+                        <div class="col-md-6">
+                    <select  name="for">
 						<option value="null">Select</option>
 						<option value="Myself">Myself</option>   
 						<option value="Son">Son</option>   
@@ -25,6 +26,7 @@
 						<option value="Friend">Friend</option>						
 					</select>
 				</div>
+                </div>
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -39,25 +41,28 @@
                             </div>
                         </div>
                         <div class="form-group row">
-					<span>Gender:</span>
-					<div class="w3_gender">
-						<div class="colr ert">
-							<label class="radio"><input type="radio" name="gender" checked=""><i></i>Male</label>
-						</div>
-						<div class="colr">
-							<label class="radio"><input type="radio" name="gender"><i></i>Female</label>
-						</div>
-						<div class="clearfix"> </div>
+                        <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+					<div class="col-md-6">
+							<input type="radio" name="gender" checked="">Male
+						
+						
+							<input type="radio" name="gender">Female
+						
+						
 					</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="form-group row">
-					<span>Date Of Birth:</span>
+                <label for="DOB:" class="col-md-4 col-form-label text-md-right">Date Of Birth:</label>
+                <div class="col-md-6">
 					<input type="date" name="DOB" required="">
 				</div>
+                </div>
 				<div class="form-group row">
-					<span>religion:</span>
-					<select  name="religion"> 
+
+					<label for="Religion" class="col-md-4 col-form-label text-md-right">Religion</label>
+					<div class="col-md-6">
+                    <select  name="religion"> 
 						<option value="null">Select Religion</option>
 						<option value="Muslim">Muslim</option>
 						<option value="Hindu">Hindu</option>    
@@ -68,6 +73,7 @@
 						<option value="No Religious Belief">No Religious Belief</option>   						
 					</select>
 				</div>
+                </div>
 				<div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('phone') }}</label>
 

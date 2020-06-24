@@ -20,6 +20,7 @@
 
                             <div class="col-md-6">
                             <input type="file" name="image" value="{{$data->image}}" />
+                            <img src="{{ URL::to('/') }}/images/{{ $data->image }}" class="img-thumbnail" width="100" />
                             </div>
                             </div>
 				<div class="form-group row">

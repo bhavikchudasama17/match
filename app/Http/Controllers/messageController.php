@@ -22,8 +22,9 @@ class messageController extends Controller
         ->join('intrested', 'users.id', '=', 'intrested.iid')
         ->join('myprofile', 'intrested.iid', '=', 'myprofile.uid')
         ->where('intrested.uid', '=', Auth::user()->id) 
-        ->select('users.id','users.name','myprofile.image')
+        ->select('users.id','users.name','myprofile.image','intrested.id AS ide')
         ->get();
+  
         return view('msgindex',compact('data'));
     }
 
@@ -49,11 +50,12 @@ class messageController extends Controller
                 
             'sid'=>$request->sid,
             'rid' =>$request->rid,
-            'message'=>Crypt::encrypt($request->message),
+            'iid' =>$request->iid,
+            'message'=>$request->message,
             
         );
         messages::create($messages);
-        return redirect('msg');
+        return back()->withInput();
        
     }
 
@@ -65,9 +67,22 @@ class messageController extends Controller
      */
     public function show($id)
     {
-        $data1=messages::where('rid', '=', $id)->where('sid', '=', Auth::user()->id)->selectRaw("message, AES_DECRYPT(message, md5(CONCAT(message, 'somekey')))")->get();
       
-        return view('sendmessage',compact('data1'));
+        $data1=DB::table('users')
+        ->join('myprofile','users.id','=','myprofile.uid')
+        ->join('messages', 'users.id', '=', 'messages.sid')
+        ->where([['messages.sid', $id],['messages.rid', Auth::user()->id]])
+        ->orWhere([['messages.rid', $id],['messages.sid', Auth::user()->id]])
+        ->orderBy('messages.updated_at','ASC')
+        ->select('messages.id AS idm','myprofile.image','messages.sid','messages.rid','messages.message','users.name','messages.updated_at')
+        ->get();
+        $data2=DB::table('intrested')
+       
+        ->join('messages', 'intrested.id', '=', 'messages.iid')
+        ->where('intrested.uid', Auth::user()->id)
+        ->select('intrested.iid','intrested.id')
+        ->first();
+        return view('sendmessage',compact('data1','data2'));
        
     }
 
@@ -102,6 +117,7 @@ class messageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        messages::find($id)->delete();
+        return back()->withInput();
     }
 }

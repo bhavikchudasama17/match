@@ -76,7 +76,7 @@ $(document).ready(function(){
             <div class="container">
                  
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                💍MATCH
+                <h3>💍MATCH</h3>
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -133,7 +133,22 @@ $(document).ready(function(){
             </div>
           </div>
 		 </div>
-            
+                                <a class="dropdown-item" href="{{ route('msg.index') }}">
+                                    <h4>📧 Messages </h4>  
+                                  </a>
+                                    <a class="dropdown-item" href="{{ route('search.index') }}">
+                                    <h4>Search profile </h4>  
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('noti.index') }}">
+                                    <h4> Notifications </h4>  
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('int.index') }}">
+                                     <h4>Interested profiles</h4>  
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('meet.index') }}">
+                                    <h4>💑Meetings</h4>    
+                                    </a>
+                                    
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -143,24 +158,14 @@ $(document).ready(function(){
                                 <a class="dropdown-item" href="{{ route('prof.index') }}">
                                      My profile  
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('msg.index') }}">
-                                    📧 Messages  
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('search.index') }}">
-                                     Search profile  
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('noti.index') }}">
-                                     Notifications 
-                                    </a>
+                                  
                                     <a class="dropdown-item" href="{{ route('req.index') }}">
                                      Sent Requests   
                                     </a>
                                     <a class="dropdown-item" href="{{ route('rreq.index') }}">
                                      Recieved Requests   
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('int.index') }}">
-                                     Interested profiles  
-                                    </a>
+                                   
                                     
                                     <a class="dropdown-item" href="{{ route('meetreq.index') }}">
                                      Sent Meeting Requests   
@@ -168,9 +173,7 @@ $(document).ready(function(){
                                     <a class="dropdown-item" href="{{ route('meetrreq.index') }}">
                                      Received Meeting Requests   
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('meet.index') }}">
-                                    💑Meetings   
-                                    </a>
+                                  
                                     <a class="dropdown-item" href="{{ route('matchreq.index') }}">
                                      Sent 💍 Request   
                                     </a>

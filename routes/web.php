@@ -22,6 +22,11 @@ Route::get('admin/register','Auth\AdminRegisterController@showRegistrationForm')
 Route::post('admin/register','Auth\AdminRegisterController@register')->name('adminregister');
 route::group(["middleware"=>"auth:admin"],function(){
     Route::resource('adm','admcontroller');
+    Route::resource('ads','adscontroller');
+    Route::resource('admatch','admatchcontroller');
+    Route::resource('adreport','adreportcontroller');
+    Route::resource('adcon','admconcontroller');
+    Route::resource('user','usercontroller');
    
 });
 
@@ -54,6 +59,7 @@ Route::group(["middleware"=>'auth'],function(){
     Route::resource('matchreq','matchedreqController');
     Route::resource('matchrreq','matchedrreqController');
     Route::resource('match','matchedController');
+    Route::resource('sarch','sarchcontroller');
 });
 Route::get('/', function () {
     return view('welcome');

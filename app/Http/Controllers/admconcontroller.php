@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
-
-class searchController extends Controller
+use App\contactus;
+class admconcontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -12,8 +12,12 @@ class searchController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('searchindex');
+    { $data4 = User::join('contactus', 'users.id', '=', 'contactus.uid')
+        
+        ->select('users.name', 'users.email','contactus.message','contactus.updated_at')
+        ->get();
+        $result1=contactus::count();
+        return view('admin_content.topbar',compact('data4','result1'));
     }
 
     /**
@@ -68,7 +72,7 @@ class searchController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $products=DB::table('users')->where('','LIKE','%'.$request->search."%")->get();
+        //
     }
 
     /**
